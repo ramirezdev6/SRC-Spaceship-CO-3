@@ -28,7 +28,6 @@ class BulletManager:
 
     def draw(self, screen):
         for spaceship_bullet in self.spaceship_bullets:
-            print("pintada")
             spaceship_bullet.draw(screen)
         for enemy_bullet in self.enemy_bullets:
             enemy_bullet.draw(screen)
@@ -37,5 +36,4 @@ class BulletManager:
         if bullet.owner == ENEMY_TYPE and not self.enemy_bullets:
             self.enemy_bullets.append(bullet)
         elif bullet.owner == SPACESHIP_TYPE:
-            print("Entra a add_bullet")
             self.spaceship_bullets.append(bullet)
