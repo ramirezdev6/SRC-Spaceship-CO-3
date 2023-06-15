@@ -17,3 +17,9 @@ class EnemyManager:
     def draw(self, screen):
         for enemy in self.enemies:
             enemy.draw(screen)
+
+    def get_enemies(self):
+        return self.enemies
+    
+    def remove_enemy(self, enemy):
+        self.enemies.remove(enemy)
