@@ -4,6 +4,7 @@ from game.components.bullets.bullet_manager import BulletManager
 from game.components.enemies.enemy_manager import EnemyManager
 from game.components.menu import Menu
 from game.components.spaceship import Spaceship
+from game.components.stats import Stats
 
 from game.utils.constants import BG, FONT_STYLE, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS
 
@@ -20,12 +21,11 @@ class Game:
         self.game_speed = 10
         self.x_pos_bg = 0
         self.y_pos_bg = 0
-        self.score = 0
-        self.death_count = 0
+        self.stats = Stats()
         self.player = Spaceship()
         self.enemy_manager = EnemyManager()
         self.bullet_manager = BulletManager()
-        self.menu = Menu("Press any key to start...", 35)
+        self.menu = Menu("Press any key to start...", text_size=35)
 
     def run(self):
         # Game loop: events - update - draw
@@ -37,9 +37,8 @@ class Game:
         pygame.quit()
 
     def play(self):
-        self.enemy_manager.reset() ## add reset
+        self.reset_play()
         self.playing = True
-        self.score = 0
         while self.playing:
             self.events()
             self.update()
@@ -80,17 +79,22 @@ class Game:
 
     def draw_score(self, screen):
         font = pygame.font.Font(FONT_STYLE, 22)
-        text = font.render(f"Score: {self.score}", True, (255, 255, 255))
+        text = font.render(f"Score: {self.stats.score}", True, (255, 255, 255))
         text_rect = text.get_rect()
         text_rect.center = (1000, 50)
         screen.blit(text, text_rect)
 
     def show_menu(self):
-        if self.death_count > 0:
-            self.menu.update_message("Press an key to restart the game")
+        if self.stats.death_count > 0:
+            self.menu.update_message(f"Press any key to restart the game")
+            self.menu.update_stats(f"Score: {self.stats.score}   Max score: {self.stats.get_max_score()}   Deaths: {self.stats.death_count}")
         self.menu.draw(self.screen)
         self.menu.events(self.on_close, self.play)
 
     def on_close(self):
         self.playing = False
         self.running = False
+
+    def reset_play(self):
+        self.enemy_manager.reset()
+        self.stats.reset_stats()

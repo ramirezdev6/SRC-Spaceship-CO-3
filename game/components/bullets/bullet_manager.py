@@ -15,7 +15,7 @@ class BulletManager:
             for enemy in enemies:
                 if spaceship_bullet.rect.colliderect(enemy.rect):
                     self.spaceship_bullets.remove(spaceship_bullet)
-                    game.score += 1
+                    game.stats.score += 1
                     game.enemy_manager.remove_enemy(enemy)
                     break
         for bullet_enemy in self.enemy_bullets:
@@ -24,7 +24,8 @@ class BulletManager:
             if bullet_enemy.rect.colliderect(game.player.rect):
                 self.enemy_bullets.remove(bullet_enemy)
                 game.playing = False
-                game.death_count += 1
+                game.stats.death_count += 1
+                game.stats.add_score()
                 pygame.time.delay(1000)
                 break
 
