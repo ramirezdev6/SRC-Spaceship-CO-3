@@ -1,14 +1,12 @@
 import pygame
-import random
 import math
-from pygame.sprite import Sprite
 from game.components.enemies.enemy import Enemy
 
 from game.utils.constants import ENEMY_2, SCREEN_HEIGHT, SCREEN_WIDTH
 
 LEFT = 'left'
 RIGHT = 'right'
-class Enemy2(Enemy): #nombre - herencia
+class SenoidalEnemy(Enemy): #nombre - herencia // Mejorar nombre
     SPEED_Y = 0.75
     SPEED_X = 5
 

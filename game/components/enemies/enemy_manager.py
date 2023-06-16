@@ -1,5 +1,5 @@
 from game.components.enemies.enemy import Enemy
-from game.components.enemies.enemy2 import Enemy2
+from game.components.enemies.senoidal_enemy import SenoidalEnemy
 
 
 class EnemyManager:
@@ -9,7 +9,7 @@ class EnemyManager:
     def update(self, game):
         if not self.enemies: # [] {} 0 "" -> false | [1] {1: 1} 1 -2 "a" -> true
             self.enemies.append(Enemy())
-            self.enemies.append(Enemy2())
+            self.enemies.append(SenoidalEnemy())
 
         for enemy in self.enemies:
             enemy.update(self.enemies, game)
@@ -23,3 +23,6 @@ class EnemyManager:
     
     def remove_enemy(self, enemy):
         self.enemies.remove(enemy)
+
+    def reset(self):
+        self.enemies = []
