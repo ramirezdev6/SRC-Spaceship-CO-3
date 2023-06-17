@@ -2,7 +2,7 @@ import random
 import pygame
 
 from game.components.powerups.shield import Shield
-from game.utils.constants import SPACESHIP_SHIELD
+from game.utils.constants import DEFAULT_TYPE, SPACESHIP_SHIELD
 
 class PowerUpManager:
     def __init__(self):
@@ -29,6 +29,10 @@ class PowerUpManager:
                 game.player.power_up_time = power_up.start_time + (self.duration*1000)
                 game.player.set_image((65, 75), SPACESHIP_SHIELD)
                 self.power_ups.remove(power_up)
+
+        if current_time > game.player.power_up_time:
+            game.player.reset_power_up()
+
 
     def draw(self, screen):
         for power_up in self.power_ups:

@@ -57,3 +57,9 @@ class Spaceship(Sprite):
         self.image = image
         self.image = pygame.transform.scale(self.image, size)
 
+    def reset_power_up(self):
+        self.power_up = DEFAULT_TYPE
+        self.has_power_up = False
+        self.power_up_time = 0
+        self.set_image()
+
