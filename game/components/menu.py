@@ -34,8 +34,10 @@ class Menu:
         self.text_rect = self.text.get_rect()
         self.text_rect.center = (self.HALF_SCREEN_WIDTH, self.HALF_SCREEN_HEIGHT)
 
-    def update_stats(self, stats_message):
+    def update_stats(self, stats_message): # refactor code 
         self.stats_message = stats_message
         self.stats_message = self.font.render(self.stats_message, True, (0, 0, 0))
         self.stats_message_rect = self.stats_message.get_rect()
         self.stats_message_rect.center = (self.HALF_SCREEN_WIDTH, self.HALF_SCREEN_HEIGHT + 100)
+
+    

@@ -8,7 +8,7 @@ class Stats:
         self.score = 0
 
     def add_score(self):
-        self.score_history.append(self.score)
+        self.score_history.append(self.score) # logica en un metodo de death count += 1
 
     def get_max_score(self):
         return max(self.score_history)

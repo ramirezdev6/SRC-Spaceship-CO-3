@@ -1,6 +1,6 @@
 import pygame
 from game.components.bullets.bullet import Bullet
-from game.utils.constants import ENEMY_TYPE, SPACESHIP_TYPE
+from game.utils.constants import ENEMY_TYPE, SHIELD_TYPE, SPACESHIP_TYPE
 
 
 class BulletManager:
@@ -23,11 +23,12 @@ class BulletManager:
                 # Verify colition with player
             if bullet_enemy.rect.colliderect(game.player.rect):
                 self.enemy_bullets.remove(bullet_enemy)
-                game.playing = False
-                game.stats.death_count += 1
-                game.stats.add_score()
-                pygame.time.delay(1000)
-                break
+                if game.player.power_up != SHIELD_TYPE:
+                    game.playing = False
+                    game.stats.death_count += 1
+                    game.stats.add_score()
+                    pygame.time.delay(1000)
+                    break
 
     def draw(self, screen):
         for bullet in self.spaceship_bullets + self.enemy_bullets:
