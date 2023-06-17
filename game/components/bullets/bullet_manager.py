@@ -25,8 +25,8 @@ class BulletManager:
                 self.enemy_bullets.remove(bullet_enemy)
                 if game.player.power_up != SHIELD_TYPE:
                     game.playing = False
-                    game.stats.death_count += 1
-                    game.stats.add_score()
+                    game.stats.add_death_count()
+                    game.stats.update_max_score()
                     pygame.time.delay(1000)
                     break
 

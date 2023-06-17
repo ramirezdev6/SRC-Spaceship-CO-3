@@ -90,7 +90,7 @@ class Game:
     def show_menu(self):
         if self.stats.death_count > 0:
             self.menu.update_message(f"Press any key to restart the game")
-            self.menu.update_stats(f"Score: {self.stats.score}   Max score: {self.stats.get_max_score()}   Deaths: {self.stats.death_count}")
+            self.menu.update_stats(f"Score: {self.stats.score}   Max score: {self.stats.max_score}   Deaths: {self.stats.death_count}")
         self.menu.draw(self.screen)
         self.menu.events(self.on_close, self.play)
 
